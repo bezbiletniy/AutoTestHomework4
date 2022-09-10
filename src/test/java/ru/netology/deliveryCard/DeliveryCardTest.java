@@ -21,12 +21,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldValidApplicationDataXPath() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("+79875675656");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         $x("//*[@data-test-id='notification']").shouldHave(Condition.text("Успешно! Встреча успешно забронирована на " + verificationDate), Duration.ofSeconds(15));
@@ -48,12 +48,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidCity() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Kazan");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Kazan");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("+79875675656");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"city\"]").getText();
@@ -62,12 +62,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldZeroCity() {
-        $x("//input[@placeholder=\"Город\"]").setValue("");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("+79875675656");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"city\"]").getText();
@@ -76,12 +76,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidDataMeet() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(2).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("+79875675656");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[contains(text(),'Заказ на выбранную дату невозможен')]").getText();
@@ -90,12 +90,12 @@ public class DeliveryCardTest {
 //
     @Test
     void shouldZeroData() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().format(DateTimeFormatter.ofPattern(""));
         $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("+79875675656");
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[contains(text(),'Неверно введена дата')]").getText();
@@ -104,12 +104,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidNameAndLastName() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Andrey");
-        $x("//input[@name=\"phone\"]").setValue("+79875675656");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Andrey");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"name\"]").getText();
@@ -118,12 +118,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldZeroNameAndLastName() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("");
-        $x("//input[@name=\"phone\"]").setValue("+79875675656");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"name\"]").getText();
@@ -132,13 +132,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidPhone() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $("[data-test-id=date] input").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("Валера");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("Валера");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"phone\"]").getText();
@@ -147,12 +146,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldZeroPhone() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"phone\"]").getText();
@@ -161,12 +160,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidOtherFirstNumberPhone() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("89772345657");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("89772345657");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"phone\"]").getText();
@@ -175,12 +174,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidMorePhoneNumbers() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("+797723456578");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+797723456578");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"phone\"]").getText();
@@ -189,12 +188,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidLessPhoneNumbers() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
-        $x("//input[@name=\"phone\"]").setValue("+7977234565");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+7977234565");
         $x("//*[@data-test-id=\"agreement\"]").click();
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"phone\"]").getText();
@@ -203,11 +202,11 @@ public class DeliveryCardTest {
 
     @Test
     void shouldNotValidCheckBox() {
-        $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
-        $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
+        $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
+        $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
-        $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
+        $x("//*[@data-test-id=\"phone\"]//self::input").setValue("Андрей Бородин-Петров");
         $x("//input[@name=\"phone\"]").setValue("+79875675656");
         $x("//*[@class=\"button__text\"]").click();
         String text = $x("//*[@data-test-id=\"agreement\"]").getText();
