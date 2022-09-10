@@ -93,7 +93,7 @@ public class DeliveryCardTest {
         $x("//*[@data-test-id=\"city\"]//self::input").setValue("Петропавловск-Камчатский");
         $x("//*[@data-test-id=\"date\"]//self::input").doubleClick().sendKeys(Keys.DELETE);
         String verificationDate = LocalDate.now().format(DateTimeFormatter.ofPattern(""));
-        $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
+        $x("//*[@data-test-id=\"date\"]//self::input").setValue(verificationDate);
         $x("//*[@data-test-id=\"name\"]//self::input").setValue("Андрей Бородин-Петров");
         $x("//*[@data-test-id=\"phone\"]//self::input").setValue("+79875675656");
         $x("//*[@data-test-id=\"agreement\"]").click();
