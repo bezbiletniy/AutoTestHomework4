@@ -78,7 +78,7 @@ public class DeliveryCardTest {
     void shouldNotValidDataMeet() {
         $x("//input[@placeholder=\"Город\"]").setValue("Петропавловск-Камчатский");
         $x("//*[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
-        String verificationDate = LocalDate.now().plusDays(0).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String verificationDate = LocalDate.now().plusDays(2).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         $x("//*[@placeholder=\"Дата встречи\"]").setValue(verificationDate);
         $x("//input[@name=\"name\"]").setValue("Андрей Бородин-Петров");
         $x("//input[@name=\"phone\"]").setValue("+79875675656");
